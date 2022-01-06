@@ -1,43 +1,46 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
-import { Pokemon } from '../shared/interfaces/pokemon';
-import { map, Observable, toArray } from 'rxjs';
-
-interface ResponseApiPokemon{
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: Pokemon[];
-} 
+import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PokemonService {
+  public api: string = environment.apiPokemon;
+  public loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    false
+  );
 
+  constructor(
+    private httpClient: HttpClient, 
+    private router: Router
+    ) {
+      this.verifyToken();
+    }
 
-  public api : string = environment.apiPokemon;
-
-  constructor(private httpClient: HttpClient) { }
-
-  /* public getPokemons(offset: number = 0, limit: number = 20): Observable<Pokemon[]>{
-    let params = new HttpParams();
-    params = params.append('offset', offset);
-    params = params.append('limit', limit);
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Accept', 'application/json');
-    return this.httpClient.get<ResponseApiPokemon>(`${this.api}/pokemon`, {params: params, headers: headers}).pipe(
-      map( res => {
-        const pokemons = res.results;
-        return pokemons;
-      })
-    );
-  } */
-
-  public getPokemons(id: number){
-    return this.httpClient.get(`${this.api}/`+ id);
+  public verifyToken(){
+    if(localStorage.getItem('tokenFicticio')){
+      this.loggedIn.next(true);
+    }
   }
 
+  public getPokemons(id: number) {
+    return this.httpClient.get(`${this.api}/` + id);
+  }
+
+  public login(email: string, password: string) {
+    if (email === 'example@gmail.com' && password === '111111') {
+      this.loggedIn.next(true);
+      localStorage.setItem('tokenFicticio', email);
+      this.router.navigate(['pokemon']);
+    }
+  }
+
+  public logout() {
+    this.loggedIn.next(false);
+    localStorage.removeItem('tokenFicticio');
+    this.router.navigate(['auth']);
+  }
 }

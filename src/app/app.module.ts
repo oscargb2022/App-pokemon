@@ -8,16 +8,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ToastrModule } from 'ngx-toastr';
 
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { FooterComponent } from './components/footer/footer.component';
-
 import { MaterialModule } from './shared/material/material.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToolbarComponent,
-    FooterComponent
   ],
   imports: [
     BrowserModule,
