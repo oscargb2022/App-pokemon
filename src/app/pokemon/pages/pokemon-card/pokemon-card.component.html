@@ -1,0 +1,40 @@
+<div class="container mb-3">
+    <h2 class="pt-4 title">Pokemon Card</h2>
+
+    <div class="row"> 
+        <div *ngFor="let pokemon of arrayPokemons; let i = index" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                <mat-card class="m-2">
+                    <mat-card-header>
+                        <div mat-card-avatar></div>
+                        <mat-card-title class="text-center"> {{pokemon.name | titlecase}} </mat-card-title>
+                        <mat-card-subtitle class="text-center"> Experience: {{pokemon.base_experience}} </mat-card-subtitle>
+                    </mat-card-header>
+                    <img mat-card-image [src]="pokemon.sprites.front_default">
+                    <mat-card-content>
+                        <div style="color: gray;">
+                            Abilities: 
+                        </div>
+                        <div *ngFor="let ability of pokemon.abilities">
+                            {{ability.ability.name | titlecase}}
+                        </div>
+                    </mat-card-content>
+                    <mat-card-actions class="buttons-card">
+                        <button mat-button (click)="favoritePokemon(pokemon.id, i)">
+                            <mat-icon *ngIf="arrayFavorites[i] == pokemon.id; else noFavorites">favorite</mat-icon>
+                            <ng-template #noFavorites>
+                                <mat-icon>favorite_border</mat-icon>
+                            </ng-template>
+                            FAVORITE
+                        </button>
+                        <button mat-button>
+                            <mat-icon>share</mat-icon>
+                            SHARE
+                        </button>
+                    </mat-card-actions>
+                </mat-card>
+        </div>
+    </div>
+    
+
+
+</div>
