@@ -51,7 +51,6 @@ export class PokemonTableComponent implements OnInit {
             this.dataSource.sort = this.sort;
             let asc = this.pokemons.sort((a: any,b: any) => a.id - b.id);
             this.dataSource.data = asc as any;
-            console.log(this.pokemons);
           }
         }
       );

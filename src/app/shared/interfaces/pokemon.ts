@@ -3,4 +3,11 @@ export interface Pokemon {
     name: string;
     experience: string;
     img: string;
+    abilities?: Abilities[];
+}
+
+interface Abilities{
+    ability: {
+        name: string;
+    }
 }
