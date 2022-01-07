@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-/* html,
+html,
 body {
   height: 100%;
 }
@@ -16,11 +16,10 @@ body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
- */
 
-html {
-  min-height: 100vh;
-  position: relative;
+
+/* html {
+  height: 100%;
 }
 body {
   margin: 0;
@@ -34,4 +33,4 @@ body {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-}
+} */
