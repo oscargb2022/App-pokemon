@@ -1,18 +1,27 @@
-.login{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.login {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  min-height: 100vh;
+  //background-image: url('https://p4.wallpaperbetter.com/wallpaper/261/1001/110/pokemon-images-for-desktop-background-wallpaper-preview.jpg');
+  background-image: url("https://www.solofondos.com/wp-content/uploads/2016/01/353010.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
-.mat-card{
-    width: 400px;
+.mat-card {
+  width: 400px;
+  opacity: 0.9;
 }
 
-.mat-card-header{
-    display: inline;
+.mat-card-header {
+  display: inline;
 }
 
-.mat-form-field{
-    width: 100%;
+.mat-form-field {
+  width: 100%;
 }
